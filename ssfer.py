@@ -2,9 +2,8 @@ from cnn import VGG19
 from faceDetector import FaceDetector
 import cv2
 import numpy as np
-from keras import backend as K
+from tensorflow.keras import backend as K
 import pickle
-import json
 
 class SSFER:
     def __init__(self):
@@ -49,7 +48,7 @@ class SSFER:
         return np.around(self.model.predict_proba([embbeding]), decimals=2)[0]
 
     def predict(self, img):
-        ret = []
+        faces = []
         coordinates = self.detect_faces(img)
         for coord in coordinates:
             img_cropped = self.crop_face(img, coord)
@@ -59,9 +58,9 @@ class SSFER:
             probabilities = self.classify(embedding)
 
             face = {}
-            face["face_coordinates"] = {"X": coord[3], "width": coord[1] - coord[3],
+            face["faceRectangle"] = {"X": coord[3], "width": coord[1] - coord[3],
                                   "Y": coord[0], "height": coord[2] - coord[0]}
-            face["probabilities"] = {
+            face["emotionsProbabilities"] = {
                                         self.EMOTIONS[0]: probabilities[0],
                                         self.EMOTIONS[1]: probabilities[1],
                                         self.EMOTIONS[2]: probabilities[2],
@@ -70,7 +69,11 @@ class SSFER:
                                         self.EMOTIONS[5]: probabilities[5],
                                         self.EMOTIONS[6]: probabilities[6],
                                      }
-            face["emotion"] = self.EMOTIONS[np.argmax(probabilities)]
-            ret.append(face)
+            face["emotionMajority"] = self.EMOTIONS[np.argmax(probabilities)]
+            faces.append(face)
 
-        return json.dumps(ret)
+        ret = {}
+        ret["total_faces"] = len(faces)
+        ret["faces"] = faces
+
+        return ret

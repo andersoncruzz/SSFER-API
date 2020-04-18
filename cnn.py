@@ -1,4 +1,4 @@
-import keras.applications as classifiers
+import tensorflow.keras.applications as classifiers
 
 class VGG19:
     def build_network(self, input_shape, num_classes):

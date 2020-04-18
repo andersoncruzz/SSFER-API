@@ -1,5 +1,5 @@
 tensorflow
-keras
 face_recognition
 mtcnn
 sklearn
+flask
