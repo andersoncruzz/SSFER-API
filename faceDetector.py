@@ -1,20 +1,8 @@
-import face_recognition
-
 class FaceDetector:
     def __init__(self, mtcnn=False):
         if mtcnn == True:
             from mtcnn.mtcnn import MTCNN
             self.mtcnn = MTCNN()
-
-    def detectHogSVM(self, img):
-        return face_recognition.face_locations(img)
-
-    def detectCNN(self, img, upsample=1):
-        if img.size == 0:
-            print("[+++] Entrou no None")
-            return []
-
-        return face_recognition.face_locations(img, number_of_times_to_upsample=upsample, model="cnn")
 
     def detectMTCNN(self, img):
         result = self.mtcnn.detect_faces(img)

@@ -1,0 +1,6 @@
+version: '3'
+services:
+  app:
+    image: andersoncruzz/ssfer
+    ports:
+     - "5080:5000"

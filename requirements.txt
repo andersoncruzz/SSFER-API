@@ -1,5 +1,4 @@
 tensorflow
-face_recognition
 mtcnn
 sklearn
 flask

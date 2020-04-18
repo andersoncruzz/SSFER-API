@@ -1,0 +1,8 @@
+venv/
+.gitignore
+approach.py
+client.py
+client_v2.py
+teste.py
+*.png
+models/svm.model
