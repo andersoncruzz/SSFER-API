@@ -4,3 +4,5 @@ services:
     image: andersoncruzz/ssfer
     ports:
      - "5080:5000"
+    volumes:
+     - ./models:/home/app/SSFER/models
