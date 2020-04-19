@@ -12,10 +12,6 @@ ssfer = SSFER()
 def resource_not_found(e):
     return jsonify(error=str(e)), 500
 
-# @app.route('/')
-# def home():
-#     return render_template("home.html")
-
 @app.route('/status')
 def get_status():
     return jsonify(status="SSFER is ok and running")
@@ -25,6 +21,24 @@ def get_test():
     img = cv2.imread("input/teste.png")
     probs = ssfer.predict(img)
     return jsonify(probs)
+
+@app.route('/ssfer', methods=['POST'])
+def ssfer_classification():
+   try:
+        r = request
+        print(r.content_type)
+        if r.content_type == "application/octet-stream":
+            print("base64")
+            img = base64.b64decode(r.data)
+            nparr = np.frombuffer(img, np.uint8)
+            img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+            probs, img_b64 = ssfer.predict(img)
+            img_b64_str = "data:image/png;base64," + img_b64.decode("utf-8")
+            return jsonify({"img": img_b64_str, "faces": probs})
+   except:
+       abort(500, description="Your requesting is not ok")
+
+
 
 @app.route('/', methods=['GET','POST'])
 def get_predict():

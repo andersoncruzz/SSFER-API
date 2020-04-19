@@ -79,7 +79,6 @@ class SSFER:
                           (coord[1], coord[2]),
                           (0,155,255),
                           2)
-            # cv2.imwrite("test.png", img_rectangle)
 
         ret = {}
         ret["total_faces"] = len(faces)

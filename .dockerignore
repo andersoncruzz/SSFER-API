@@ -4,5 +4,6 @@ approach.py
 client.py
 client_v2.py
 teste.py
-*.png
-models/svm.model
+models/
+input/
+__pycache__/

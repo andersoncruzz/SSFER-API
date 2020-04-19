@@ -42,7 +42,10 @@
           <a class="nav-link js-scroll-trigger" href="#about">About</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#demo">Demo</a>
+          <a class="nav-link js-scroll-trigger" href="#demo1">Demo - Upload Image</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#demo2">Demo - Real Time</a>
         </li>
         <li class="nav-item">
           <a class="nav-link js-scroll-trigger" href="#education">Education</a>
@@ -86,9 +89,9 @@
 
     <hr class="m-0">
 
-    <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="demo">
+    <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="demo1">
       <div class="w-100">
-        <h2 class="mb-5">Demo</h2>
+        <h2 class="mb-5">Demo - Upload Image</h2>
             <div class="container">
               <div class="row">
                   <div class="col-sm-6 col-lg-8">
@@ -101,13 +104,41 @@
                               <label for="sent-image">Select an image</label>
                               <input type="file" class="form-control-file" id="sent-image" name="file">
                           </div>
-                          <button type="submit" class="btn btn-primary">Submit</button>
+                          <button type="submit" class="btn btn-outline-dark">Submit</button>
                       </form>
                     </row>
                     <row class="row mt-4">
                      <img id="img-rec" class="img-fluid" src="/static/img/profile.jpg"
                           alt="GeeksforGeeks logo">
                       </row>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+    </section>
+
+    <hr class="m-0">
+
+    <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="demo2">
+      <div class="w-100">
+        <h2 class="mb-5">Demo - Real Time</h2>
+            <div class="container">
+              <div class="row">
+                  <div class="col-sm-6 col-lg-8">
+                    <video id="player" controls autoplay></video>
+                  </div>
+                  <div class="col-6 col-lg-4">
+                    <row class="row">
+                      <button id="capture" class="btn btn-outline-dark">Capture</button>
+                    </row>
+                    <row class="row mt-4">
+                      <canvas id="snapshot" width=320 height=240></canvas>
+                    </row>
+                    <row class="row mt-4">
+                      <textarea name="" id="txtArea-realtime" cols="40" rows="20"></textarea>
+                    </row>
+
                   </div>
               </div>
           </div>
@@ -276,20 +307,57 @@
       var textedJson = JSON.stringify(respJSON, undefined, 4);
       $('#myTextarea').text(textedJson);
       if (!jQuery.isEmptyObject(respJSON)){
-        window.location = '#demo';
+        window.location = '#demo1';
       }
   </script>
 
 <script>
   var im = {{ img | tojson}};
   var imJSON = JSON.parse(im);
-  console.log(imJSON);
   if(!jQuery.isEmptyObject(imJSON)) {
     document.getElementById('img-rec')
             .setAttribute('src', imJSON.img);
   }
 </script>
 
+<script>
+  var player = document.getElementById('player');
+  var snapshotCanvas = document.getElementById('snapshot');
+  var captureButton = document.getElementById('capture');
+
+  var handleSuccess = function(stream) {
+    // Attach the video stream to the video element and autoplay.
+    player.srcObject = stream;
+  };
+
+  captureButton.addEventListener('click', function() {
+    var context = snapshot.getContext('2d');
+    // Draw the video frame to the canvas.
+    context.drawImage(player, 0, 0, snapshotCanvas.width,
+        snapshotCanvas.height);
+    var image = snapshotCanvas.toDataURL();
+    var img_filtered = image.split(",")[1];
+    $.ajax({
+      url: "/ssfer",
+      type:"POST",
+      data:img_filtered,
+      contentType:"application/octet-stream",
+      success: function(data){
+        var image = new Image();
+        image.onload = function() {
+          context.drawImage(image, 0, 0);
+        };
+        image.src = data.img;
+
+        var textedJson = JSON.stringify(data.faces.faces, undefined, 4);
+        $('#txtArea-realtime').text(textedJson);
+      }
+    });
+  });
+
+  navigator.mediaDevices.getUserMedia({video: true})
+      .then(handleSuccess);
+</script>
 
 </body>
 
