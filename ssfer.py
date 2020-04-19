@@ -4,6 +4,7 @@ import cv2
 import numpy as np
 from tensorflow.keras import backend as K
 import pickle
+import base64
 
 class SSFER:
     def __init__(self):
@@ -50,6 +51,7 @@ class SSFER:
     def predict(self, img):
         faces = []
         coordinates = self.detect_faces(img)
+        img_rectangle = img
         for coord in coordinates:
             img_cropped = self.crop_face(img, coord)
             img_resize = self.resize_image(img_cropped)
@@ -72,8 +74,17 @@ class SSFER:
             face["emotionMajority"] = self.EMOTIONS[np.argmax(probabilities)]
             faces.append(face)
 
+            cv2.rectangle(img_rectangle,
+                          (coord[3], coord[0]),
+                          (coord[1], coord[2]),
+                          (0,155,255),
+                          2)
+            # cv2.imwrite("test.png", img_rectangle)
+
         ret = {}
         ret["total_faces"] = len(faces)
         ret["faces"] = faces
 
-        return ret
+        retval, buffer = cv2.imencode('.jpg', img_rectangle)
+
+        return ret, base64.b64encode(buffer)
