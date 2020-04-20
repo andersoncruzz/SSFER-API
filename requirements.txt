@@ -2,3 +2,4 @@ tensorflow
 mtcnn
 sklearn
 flask
+cryptography

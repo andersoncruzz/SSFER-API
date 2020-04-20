@@ -78,4 +78,4 @@ def get_predict():
         abort(500, description="Your requesting is not ok")
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", debug=True)
+    app.run(host="0.0.0.0", debug=True, ssl_context="adhoc")
