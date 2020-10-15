@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>SSFER</title>
+        <link rel="icon" href="/static/images/ai-logo.png">
+        <link rel="stylesheet" type="text/css" href="/static/css/home.css">
+    </head>
+    <body>
+        <div class="root">
+            <form action = "/ssfer" method = "POST" enctype = "multipart/form-data">
+                <h1>Selecione uma imagem!</h1>
+                <div class="container">
+                    <label for="selecao-arquivo">Clique aqui para selecionar um arquivo</label>
+                    <input id= "selecao-arquivo" type="file" name="file"/>
+                </div>
+                <div class="bottom">
+                    <button type="submit" class="btnpro btn">Processar</button>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

@@ -16,9 +16,14 @@ class SSFER:
         self.net = VGG19()
         self.model = None
         self.faceDetector = FaceDetector(mtcnn=True)
-
+        self.loading_faces_emoticons()
         self.loading_net()
         self.loading_classifier()
+
+    def loading_faces_emoticons(self):
+        self.feelings_faces = []
+        for index, emotion in enumerate(self.EMOTIONS):
+            self.feelings_faces.append(cv2.imread('./emojis/' + emotion + '.png', -1))
 
     def loading_net(self):
         self.net = self.net.build_network((int(self.SIZE), int(self.SIZE), 3), len(self.EMOTIONS))
@@ -74,11 +79,25 @@ class SSFER:
             face["emotionMajority"] = self.EMOTIONS[np.argmax(probabilities)]
             faces.append(face)
 
-            cv2.rectangle(img_rectangle,
-                          (coord[3], coord[0]),
-                          (coord[1], coord[2]),
-                          (0,155,255),
-                          2)
+            # cv2.rectangle(img_rectangle,
+            #               (coord[3], coord[0]),
+            #               (coord[1], coord[2]),
+            #               (0,155,255),
+            #               2)
+
+            emoji = self.feelings_faces[np.argmax(probabilities)]
+            print(emoji.shape)
+            print(face)
+            y1, y2 = coord[0], coord[0] + emoji.shape[0]
+            x1, x2 = coord[3], coord[3] + emoji.shape[1]
+
+            alpha_s = emoji[:, :, 3] / 255.0
+            alpha_l = 1.0 - alpha_s
+
+            for c in range(0, 3):
+                img_rectangle[y1:y2, x1:x2, c] = (alpha_s * emoji[:, :, c] +
+                                                  alpha_l * img_rectangle[y1:y2, x1:x2, c])
+
 
         ret = {}
         ret["total_faces"] = len(faces)
