@@ -11,6 +11,11 @@ class SSFER:
         self.SIZE = 185
         self.EMOTIONS = ['angry', 'disgust', 'fear', \
             'happiness', 'sadness', 'surprise', 'neutral']
+        self.EMOTIONS_PT = ['raiva', 'nojo', 'medo', \
+            'alegria', 'tristeza', 'surpresa', 'neutralidade']
+        self.ANIMAL = ['Onça', 'Boto', 'Sauin de Coleira', \
+            'Preguiça', 'Peixe Boi', 'Gavião Real', 'Capivara']
+
         self.PATH_NET_INPUT = "models/vgg.hdf5"
         self.PATH_MODEL_INPUT = "models/rf.model"
         self.net = VGG19()
@@ -65,18 +70,19 @@ class SSFER:
             probabilities = self.classify(embedding)
 
             face = {}
-            face["faceRectangle"] = {"X": coord[3], "width": coord[1] - coord[3],
-                                  "Y": coord[0], "height": coord[2] - coord[0]}
-            face["emotionsProbabilities"] = {
-                                        self.EMOTIONS[0]: probabilities[0],
-                                        self.EMOTIONS[1]: probabilities[1],
-                                        self.EMOTIONS[2]: probabilities[2],
-                                        self.EMOTIONS[3]: probabilities[3],
-                                        self.EMOTIONS[4]: probabilities[4],
-                                        self.EMOTIONS[5]: probabilities[5],
-                                        self.EMOTIONS[6]: probabilities[6],
+            face["faceRetangulo"] = {"X": coord[3], "largura": coord[1] - coord[3],
+                                  "Y": coord[0], "altura": coord[2] - coord[0]}
+            face["emocoesProbabilidades"] = {
+                                        self.EMOTIONS_PT[0]: probabilities[0],
+                                        self.EMOTIONS_PT[1]: probabilities[1],
+                                        self.EMOTIONS_PT[2]: probabilities[2],
+                                        self.EMOTIONS_PT[3]: probabilities[3],
+                                        self.EMOTIONS_PT[4]: probabilities[4],
+                                        self.EMOTIONS_PT[5]: probabilities[5],
+                                        self.EMOTIONS_PT[6]: probabilities[6],
                                      }
-            face["emotionMajority"] = self.EMOTIONS[np.argmax(probabilities)]
+            face["emocaoMajoritaria"] = self.EMOTIONS_PT[np.argmax(probabilities)]
+            face["animal"] = self.ANIMAL[np.argmax(probabilities)]
             faces.append(face)
 
             # cv2.rectangle(img_rectangle,

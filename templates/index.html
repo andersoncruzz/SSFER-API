@@ -8,9 +8,9 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SSFER - Single Shot Facial Expression Recognition</title>
+  <title>AldeiA</title>
 
-  <link rel="icon" href="/static/images/ai-logo.png">
+  <link rel="icon" href="/static/img/aldeia.jpeg">
   <!-- Bootstrap core CSS -->
   <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -33,7 +33,7 @@
     <a class="navbar-brand js-scroll-trigger" href="#page-top">
       <span class="d-block d-lg-none">Clarence Taylor</span>
       <span class="d-none d-lg-block">
-        <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="/static/img/profile.png" alt="">
+        <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="/static/img/aldeia.jpeg" alt="">
       </span>
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,22 +42,16 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#about">About</a>
+          <a class="nav-link js-scroll-trigger" href="#about">Sobre</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#demo1">Demo - Upload Image</a>
+          <a class="nav-link js-scroll-trigger" href="#demo2">Demo - Tempo Real</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#demo2">Demo - Real Time</a>
+          <a class="nav-link js-scroll-trigger" href="#demo1">Demo - Upload Imagem</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#docs-api">Docs - API</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#docs-return">Docs - Response</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#publications">Publications</a>
+          <a class="nav-link js-scroll-trigger" href="#publications">Publicações</a>
         </li>
       </ul>
     </div>
@@ -67,15 +61,20 @@
 
     <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="about">
       <div class="w-100">
-        <h1 class="mb-0">SSFER:
-          <span class="text-primary">Single Shot Facial Expression Recognition</span>
+        <h1 class="mb-0">ALDEIA
+          <span class="text-primary"></span>
         </h1>
-        <div class="subheading mb-5">Institute of Computing · Federal University of Amazonas · Brazil ·
+        <div class="subheading mb-5">Instituto de Computação · Universidade Federal do Amazonas · Brazil ·
           <a href="mailto:aac@icomp.ufam.edu.br">aac@icomp.ufam.edu.br</a>
           ·
           <a href="mailto:rbarreto@icomp.ufam.edu.br">rbarreto@icomp.ufam.edu.br</a>
         </div>
-        <p class="lead mb-5">This API is free, as a result of research carried out at PPGI - Institute of Computing at Federal University of Amazonas (UFAM) - Brazil. This API recognizes 7 emotions through facial expressions. The method is based on: computer vision, deep learning, and artificial intelligence.</p>
+        <p class="lead mb-5">
+          Este sistema usa a webcam para fazer o reconhecimento facial, identificar a emoção dos usuários e substituir somente o rosto da pessoa por um emoticon que represente a emoção do momento. As emoções são: alegria, medo, surpresa, tristeza, nojo, raiva e neutralidade. Para isso, a aplicação usa diversas técnicas de visão computacional, processamento digital de imagens, além de Redes Neurais Convolucionais, que é uma das principais técnicas de Aprendizado Profundo (Deep Learning), para identificar a emoção. Para deixar a aplicação mais no contexto amazônico, as emoções serão substituídas por desenhos de animais da floresta amazônica fazendo a respectiva emoção.
+        </p>
+        <p class="lead mb-5">
+          Este projeto faz parte de uma pesquisa conduzida por Anderson Cruz e Raimundo Barreto no Programa de Pós-graduação em Informática da UFAM.
+        </p>
         <div class="social-icons">
           <a href="https://www.linkedin.com/in/anderson-cruz-b02167b9/">
             <i class="fab fa-linkedin-in"></i>
@@ -89,40 +88,9 @@
 
     <hr class="m-0">
 
-    <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="demo1">
-      <div class="w-100">
-        <h2 class="mb-5">Demo - Upload Image</h2>
-            <div class="container">
-              <div class="row">
-                  <div class="col-sm-6 col-lg-8">
-                      <textarea name="" id="myTextarea" cols="60" rows="20"></textarea>
-                  </div>
-                  <div class="col-6 col-lg-4">
-                    <row class="row">
-                      <form action="/" method="POST" enctype="multipart/form-data" name="form_image">
-                          <div class="form-group">
-                              <label for="sent-image">Select an image</label>
-                              <input type="file" class="form-control-file" id="sent-image" name="file">
-                          </div>
-                          <button type="submit" class="btn btn-outline-dark">Submit</button>
-                      </form>
-                    </row>
-                    <row class="row mt-4">
-                     <img id="img-rec" class="img-fluid" src="/static/img/profile.jpg"
-                          alt="GeeksforGeeks logo">
-                      </row>
-                  </div>
-              </div>
-          </div>
-      </div>
-
-    </section>
-
-    <hr class="m-0">
-
     <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="demo2">
       <div class="w-100">
-        <h2 class="mb-5">Demo - Real Time</h2>
+        <h2 class="mb-5">Demo - Tempo Real</h2>
             <div class="container">
               <div class="row">
                   <div class="col-sm-6 col-lg-8">
@@ -130,7 +98,7 @@
                   </div>
                   <div class="col-6 col-lg-4">
                     <row class="row">
-                      <button id="capture" class="btn btn-outline-dark">Capture</button>
+                      <button id="capture" class="btn btn-outline-dark">Capturar</button>
                     </row>
                     <row class="row mt-4">
                       <canvas id="snapshot" width=320 height=240></canvas>
@@ -149,54 +117,33 @@
 
     <hr class="m-0">
 
-    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="docs-api">
+    <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="demo1">
       <div class="w-100">
-        <h2 class="mb-5">Docs - API</h2>
-
-        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
-          <div class="resume-content">
-            <h3 class="mb-3">cURL - Command</h3>
-            <div class="bg-dark">
-              <samp class="sample">$ curl --location --request POST 'https://ec2-18-217-205-88.us-east-2.compute.amazonaws.com/'
-                        --header 'Content-Type: application/octet-stream'
-                        --header 'Content-Type: text/plain'
-                        --data-raw 'IMAGE CONVERTED TO BASE 64'</samp>
-            </div>
+        <h2 class="mb-5">Demo - Upload Imagem</h2>
+            <div class="container">
+              <div class="row">
+                  <div class="col-sm-6 col-lg-8">
+                      <textarea name="" id="myTextarea" cols="60" rows="20"></textarea>
+                  </div>
+                  <div class="col-6 col-lg-4">
+                    <row class="row">
+                      <form action="/" method="POST" enctype="multipart/form-data" name="form_image">
+                          <div class="form-group">
+                              <label for="sent-image">Selecione uma imagem</label>
+                              <input type="file" class="form-control-file" id="sent-image" name="file">
+                          </div>
+                          <button type="submit" class="btn btn-outline-dark">Enviar</button>
+                      </form>
+                    </row>
+                    <row class="row mt-4">
+                     <img id="img-rec" class="img-fluid" src="/static/img/profile_2.jpg"
+                          alt="GeeksforGeeks logo">
+                      </row>
+                  </div>
+              </div>
           </div>
-        </div>
-
-        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
-          <div class="resume-content">
-            <h3 class="mb-3">Python</h3>
-            <div class="bg-dark">
-              <samp class="sample">
-                <pre class="sample">
-  import requests
-  url = "https://ec2-18-217-205-88.us-east-2.compute.amazonaws.com/"
-  payload = #IMAGE CONVERTED TO BASE 64
-  headers = {
-    'Content-Type': 'application/octet-stream',
-    'Content-Type': 'text/plain'
-  }
-  response = requests.request("POST", url, headers=headers, data = payload)
-              </pre></samp>
-            </div>
-          </div>
-        </div>
-
       </div>
-    </section>
 
-    <hr class="m-0">
-
-    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="docs-return">
-      <div class="w-100">
-        <h2 class="mb-5">Docs - Response</h2>
-        <div class="col-sm-6 col-lg-8">
-          <textarea name="" cols="60" rows="20" id="responseJson"></textarea>
-        </div>
-
-      </div>
     </section>
 
 
@@ -204,7 +151,7 @@
 
     <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="publications">
       <div class="w-100">
-        <h2 class="mb-5">Publications</h2>
+        <h2 class="mb-5">Publicações</h2>
         <ul class="fa-ul mb-0">
           <li>
             <i class="fa-li fa fa-circle-notch"></i>

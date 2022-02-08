@@ -13,6 +13,6 @@ services:
   app:
     image: andersoncruzz/ssfer:1.0.2
     ports:
-     - "443:5000"
+     - "5000:5000"
     volumes:
      - ./models:/home/app/SSFER/models
